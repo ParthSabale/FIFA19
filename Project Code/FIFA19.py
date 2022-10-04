@@ -67,3 +67,27 @@ size = 7,color = 'black')
 sns.despine()
 g.figure.set_size_inches(12,8)
 plt.show()
+
+### OC- ParthSabale ###
+max_wage = filtered_player_df.Wage.max()
+max_wage_player = filtered_player_df[(player_df['Wage'] == max_wage)]['Name'].values[0]
+g = sns.boxplot(y = "Club",
+x = 'Wage',
+data = filtered_player_df, whis=np.inf)
+g = sns.swarmplot(y = "Club",
+x = 'Wage',
+data = filtered_player_df,
+# Decrease the size of the points to avoid crowding
+size = 7,color='black')
+# remove the top and right line in graph
+sns.despine()
+# Annotate. xy for coordinate. max_wage is x and 0 is y. In this plot y ranges from 0 to 7 for each level
+# xytext for coordinates of where I want to put my text
+plt.annotate(s = max_wage_player,
+xy = (max_wage,0),
+xytext = (500,1),
+# Shrink the arrow to avoid occlusion
+arrowprops = {'facecolor':'gray', 'width': 3, 'shrink': 0.03},
+backgroundcolor = 'white')
+g.figure.set_size_inches(12,8)
+plt.show()
